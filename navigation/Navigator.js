@@ -4,45 +4,56 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ThemeContext } from "../Config/theme-context";
+
+import CategoriesScreen from "../screens/category/CategoriesScreen";
+import CategoryMealsScreen from "../screens/category/CategoryMealsScreen";
+import CreateCategoryScreen from "../screens/Admin/CreateCategoryScreen";
+import CreateMealScreen from "../screens/Admin/CreateMealScreen";
+import MealScreen from "../screens/meal/MealScreen";
+import MealsScreen from "../screens/meal/MealsScreen";
 import HomeScreen from "../screens/HomeScreen";
-import  DocVisite from '../screens/visites/doctors/IndexScreen';
-import  DocCreate from '../screens/visites/doctors/CreateScreen';
-import  PharmaVisite from '../screens/visites/pharmacies/IndexScreen';
-import  PharmaCreate from '../screens/visites/pharmacies/CreateScreen';
+import FavoritesScreen from "../screens/user/FavoritesScreen";
+import CartScreen from "../screens/Shop/CartScreen";
+import OrderScreen from "../screens/Shop/OrderScreen";
+import ProfileScreen from "../screens/user/ProfileScreen";
 
 /** Stacks Navigations  */
+const CategoriesStackNavigator = createStackNavigator();
+export const CategoriesNavigator = () => {
+  return (
+    <CategoriesStackNavigator.Navigator screenOptions={{headerShown: false}}>
+      <CategoriesStackNavigator.Screen name='All Categories' component={CategoriesScreen} />
+      <CategoriesStackNavigator.Screen name='Category' component={CategoryMealsScreen} />
+      <CategoriesStackNavigator.Screen name='Create' component={CreateCategoryScreen} />
+    </CategoriesStackNavigator.Navigator>
+  );
+}
 
+const MealsStackNavigator = createStackNavigator();
+export const MealsNavigator = () => {
+  return (
+    <MealsStackNavigator.Navigator screenOptions={{headerShown: false}}>
+      <MealsStackNavigator.Screen name='All Meals' component={MealsScreen} />
+      <MealsStackNavigator.Screen name='Meal' component={MealScreen} />
+      <MealsStackNavigator.Screen name='Create' component={CreateMealScreen} />
+    </MealsStackNavigator.Navigator>
+  );
+}
 
-
-/** Start Stack Vsisites Navigation  */
-const VisiteDoctorStackNavigator = createStackNavigator();
-
-export  const VisiteDoctorNavigator = () => {
-    return (
-      <VisiteDoctorStackNavigator.Navigator  screenOptions={{headerShown: false}}>
-        <VisiteDoctorStackNavigator.Screen name='Doctors'  component={DocVisite} />
-         <VisiteDoctorStackNavigator.Screen name='Create' component={DocCreate} />
-      </VisiteDoctorStackNavigator.Navigator>
-    )
-  }
-
-const VisitePharmacyStackNavigator = createStackNavigator();
-
-export  const VisitePharmacyNavigator = () => {
-    return (
-      <VisitePharmacyStackNavigator.Navigator  screenOptions={{headerShown: false}}>
-        <VisitePharmacyStackNavigator.Screen name='Pharmacies'  component={PharmaVisite} />
-         <VisitePharmacyStackNavigator.Screen name='Create' component={PharmaCreate} />
-      </VisitePharmacyStackNavigator.Navigator>
-    )
-  }
-/** end Stacks Navigation  */
-
-
+const HomeStackNavigator = createStackNavigator();
+export const HomeNavigator = () => {
+  return (
+    <HomeStackNavigator.Navigator screenOptions={{headerSHown: false}}>
+      <HomeStackNavigator.Screen name='Home' component={HomeScreen} />
+      <HomeStackNavigator.Screen name='Meal' component={MealScreen} /> 
+     
+    </HomeStackNavigator.Navigator>
+  );
+}
 
 /** Bottom Navigation  */
 
-const VisiteTab = createBottomTabNavigator();
+const BottomNav = createBottomTabNavigator();
 const UserMdIcon = (props) => (
   <Icon {...props} name='user-md' pack='FontAwesome'/>
 );
@@ -59,16 +70,22 @@ const HospitalIcon = (props) => (
 const BottomTabBar = ({ navigation, state }) => (
     <BottomNavigation  selectedIndex={state.index}
       onSelect={index => navigation.navigate(state.routeNames[index])}>
-      <BottomNavigationTab title='Doctors' icon={state.index ==0 ? UserMdIcon: UserIcon} />
-      <BottomNavigationTab title='Pharmacies' icon={state.index ==1 ?HospitalUserIcon:HospitalIcon} />
+      <BottomNavigationTab title='Home' icon={state.index ==0 ? UserMdIcon: UserIcon} />
+      <BottomNavigationTab title='Favorites' icon={state.index ==1 ?HospitalUserIcon:HospitalIcon} />
+      <BottomNavigationTab title='Carts' icon={state.index ==1 ?HospitalUserIcon:HospitalIcon} />
+      <BottomNavigationTab title='Orders' icon={state.index ==1 ?HospitalUserIcon:HospitalIcon} />
+      <BottomNavigationTab title='Profile' icon={state.index ==1 ?HospitalUserIcon:HospitalIcon} />
     </BottomNavigation>
   );
   
-  const VisiteTabNavigator = () => (
-    <VisiteTab.Navigator tabBar={props => <BottomTabBar {...props} />} >
-      <VisiteTab.Screen name='Doctors' component={VisiteDoctorNavigator}options={{headerShown: false,  }}/>
-      <VisiteTab.Screen name='Pharmacies' component={VisitePharmacyNavigator} options={{headerShown: false,}}/>
-    </VisiteTab.Navigator>
+  const HomeTabNavigator = () => (
+    <BottomNav.Navigator tabBar={props => <BottomTabBar {...props} />} >
+      <BottomNav.Screen name='Overview' component={HomeNavigator}options={{headerShown: false,  }}/>
+      <BottomNav.Screen name='Favorites' component={FavoritesScreen} options={{headerShown: false,}}/>
+     <BottomNav.Screen name='Carts' component={CartScreen}options={{headerShown: false,  }}/>
+     <BottomNav.Screen name='Orders' component={OrderScreen} options={{headerShown: false,}}/>
+      <BottomNav.Screen name='Profile' component={ProfileScreen} options={{headerShown: false,}}/>
+    </BottomNav.Navigator>
   );
 
 /** end  Bottom Navigation  */
@@ -76,7 +93,7 @@ const BottomTabBar = ({ navigation, state }) => (
 
 
 
-
+/** for the admin USER */
 
 /** Drawer Navigation  */
 const DrawerNavigator = createDrawerNavigator();
@@ -144,12 +161,17 @@ const Footer = (props) => {
             onSelect={index => navigation.navigate(state.routeNames[index.row])}
             footer={Footer}>
         <DrawerItem
-          title='Dashboard'
+          title='Home'
           accessoryLeft={HomeIcon}
           accessoryRight={ForwardIcon}
         />
         <DrawerItem
-          title='Visites'
+          title='Categories'
+          accessoryLeft={EyeIcon}
+          accessoryRight={ForwardIcon}
+        />
+          <DrawerItem
+          title='Meals'
           accessoryLeft={EyeIcon}
           accessoryRight={ForwardIcon}
         />
@@ -157,10 +179,14 @@ const Footer = (props) => {
     </Layout>
   );
   
- export const VisiteNavigator = () => 
+ export const MealNavigator = () => 
  (
     <DrawerNavigator.Navigator drawerContent={props => <DrawerContent {...props}/>} screenOptions={{headerShown: false}} >
-    <DrawerNavigator.Screen name='Dashboard' component={HomeScreen}/>
-    <DrawerNavigator.Screen name='Visites' component={VisiteTabNavigator}/>
+    <DrawerNavigator.Screen name='Dashboard' component={HomeTabNavigator}/>
+    <DrawerNavigator.Screen name='Categories' component={CategoriesNavigator}/>
+    <DrawerNavigator.Screen name='Meals' component={MealsNavigator}/>
     </DrawerNavigator.Navigator>
 );
+
+
+/** For The Guest USER */

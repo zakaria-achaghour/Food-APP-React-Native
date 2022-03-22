@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const PlanningScreen = () => {
+const MealsScreen = () => {
   return (
     <View>
-      <Text>PlanningScreen</Text>
+      <Text>MealsScreen</Text>
     </View>
   )
 }
 
-export default PlanningScreen
+export default MealsScreen
 
 const styles = StyleSheet.create({})

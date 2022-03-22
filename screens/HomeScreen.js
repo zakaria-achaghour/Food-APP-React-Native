@@ -5,16 +5,16 @@ import { Divider, Icon, Layout, Text, TopNavigation, TopNavigationAction } from 
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const HomeScreen = () => {
-    const navigation = useNavigation();
-    const renderDrawerAction = () => (
-      <TopNavigationAction
-        icon={(style) => <Icon {...style} name="menu" />}
-        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-      />
-    );
+    // const navigation = useNavigation();
+    // const renderDrawerAction = () => (
+    //   <TopNavigationAction
+    //     icon={(style) => <Icon {...style} name="menu" />}
+    //     onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+    //   />
+    // );
   return (
     <SafeAreaView style={{ flex: 1 }}>
-        <TopNavigation
+        {/* <TopNavigation
             title={evaProps => <Text {...evaProps}>Dashboard</Text>}
             alignment="center"
             accessoryLeft={renderDrawerAction}
@@ -22,7 +22,7 @@ const HomeScreen = () => {
         <Divider/>
         <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} level="4">
             <Text>Dahsboard</Text>
-        </Layout>
+        </Layout> */}
     </SafeAreaView>
   )
 }
