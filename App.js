@@ -7,6 +7,7 @@ import { ThemeContext } from './Config/theme-context';
 import Appnavigator from './navigation/AppNavigator';
 import { FontAwesome5IconsPack } from './Config/fontAwesom5-icons';
 import { FontAwesomeIconsPack } from './Config/fontAwesom-icons';
+import { IoniconsIconsPack } from './Config/ionicons -icons';
 
  
 export default function App() {
@@ -19,7 +20,7 @@ const toggleTheme = () => {
 };
 
   return (<>
-    <IconRegistry icons={[EvaIconsPack, FontAwesome5IconsPack,FontAwesomeIconsPack]} />
+    <IconRegistry icons={[EvaIconsPack, FontAwesome5IconsPack,FontAwesomeIconsPack,IoniconsIconsPack]} />
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
     <ApplicationProvider {...eva} theme={{...eva[theme],...themeGlobal}} >
       <Appnavigator/>
