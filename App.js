@@ -9,6 +9,8 @@ import { FontAwesome5IconsPack } from './Config/fontAwesom5-icons';
 import { FontAwesomeIconsPack } from './Config/fontAwesom-icons';
 import { IoniconsIconsPack } from './Config/ionicons -icons';
 
+import { Provider } from 'react-redux'
+import store from './App/store';
  
 export default function App() {
   
@@ -20,12 +22,14 @@ const toggleTheme = () => {
 };
 
   return (<>
-    <IconRegistry icons={[EvaIconsPack, FontAwesome5IconsPack,FontAwesomeIconsPack,IoniconsIconsPack]} />
+  <Provider store={store}>
+     <IconRegistry icons={[EvaIconsPack, FontAwesome5IconsPack,FontAwesomeIconsPack,IoniconsIconsPack]} />
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-    <ApplicationProvider {...eva} theme={{...eva[theme],...themeGlobal}} >
-      <Appnavigator/>
-  </ApplicationProvider>
-  </ThemeContext.Provider>
+      <ApplicationProvider {...eva} theme={{...eva[theme],...themeGlobal}} >
+        <Appnavigator/>
+      </ApplicationProvider>
+    </ThemeContext.Provider>
+  </Provider>
   </>
   );
 }
