@@ -11,7 +11,7 @@ import { ThemeContext } from '../../Config/theme-context';
 
 const CreateCategoryScreen = ({navigation}) => {
 
-  const initialValues = { name:'', active:'1' }
+  const initialValues = { name:'', active:'1',imageUrl: '' }
   const themeContext = useContext(ThemeContext);
   const [theme, setTheme] = useState(0);
   useEffect(() => {
@@ -22,7 +22,7 @@ const CreateCategoryScreen = ({navigation}) => {
       setTheme(1);
     }
   }, [themeContext]);
-  const validationSchema = Yup.object({name: Yup.string().required(), active: Yup.boolean().required() });
+    const validationSchema = Yup.object({name: Yup.string().required(), active: Yup.boolean().required(),imageUrl: Yup.string().required(), });
   const onSubmit = (values, onSubmitProps) => {
    console.log(values);
    
@@ -79,6 +79,17 @@ const CreateCategoryScreen = ({navigation}) => {
        />
        {errors.name &&
          <Text style={{ fontSize: 10,flexDirection: 'row', color: 'red' }}>{errors.name}</Text>
+       }
+        <Input
+          label='Iamge'
+          placeholder='Image'
+          style={styles.input}
+          onChangeText={handleChange('imageUrl')}
+          onBlur={handleBlur('imageUrl')}
+          value={values.imageUrl}
+       />
+       {errors.imageUrl &&
+         <Text style={{ fontSize: 10,flexDirection: 'row', color: 'red' }}>{errors.imageUrl}</Text>
        }
      
      <CheckBox
