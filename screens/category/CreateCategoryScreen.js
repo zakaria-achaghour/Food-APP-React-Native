@@ -91,7 +91,7 @@ const CreateCategoryScreen = ({navigation}) => {
        {errors.imageUrl &&
          <Text style={{ fontSize: 10,flexDirection: 'row', color: 'red' }}>{errors.imageUrl}</Text>
        }
-     
+    
      <CheckBox
        style={styles.input}
         checked={values.active} 
