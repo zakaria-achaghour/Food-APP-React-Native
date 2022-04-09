@@ -12,6 +12,10 @@ export const HomeFillIcon = (props) => (
   export const HeartFillIcon = (props) => (
       <Icon {...props} name='heart' pack='FontAwesome'/>
     );
+
+  export const BackIcon = (props) => (
+    <Icon {...props} name='arrow-back' pack='Ionicons'/>
+  );
   export const HeartIcon = (props) => (
         <Icon {...props} name='heart-o' pack='FontAwesome'/>
   );
@@ -32,4 +36,16 @@ export const ShoppinIcon = (props) => (
   );
   export const UserIcon = (props) => (
     <Icon {...props} name='user' pack='FontAwesome5'/>
+  );
+
+  export const PlusIcon = (props)  => (
+    <Icon {...props} name='plus-outline' />
+  )
+
+   export const SaveIcon = (props)  => (
+    <Icon {...props} name='save-outline' />
+  )
+
+  export const RemoveIcon = (props) => (
+    <Icon {...props} name='remove' pack='FontAwesome'/>
   );

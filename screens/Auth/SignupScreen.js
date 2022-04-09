@@ -58,7 +58,7 @@ const SignupScreen = () => {
         <Text style={styles.text_header}>SIGN UP</Text>
       </Animatable.View>
       <Animatable.View animation={"fadeInUpBig"} style={styles.footer}>
-    <ScrollView  >
+      <ScrollView  >
 
       <KeyboardAvoidingView
           style={styles.formContainer}

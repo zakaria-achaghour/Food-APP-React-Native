@@ -11,13 +11,17 @@ import { IoniconsIconsPack } from './Config/ionicons -icons';
 
 import { Provider } from 'react-redux'
 import store from './App/store';
+import { StatusBar } from 'react-native';
  
 export default function App() {
   
 const [theme, setTheme] = useState('light');
 
+
 const toggleTheme = () => {
   const nextTheme = theme === 'light' ? 'dark' : 'light';
+
+  
   setTheme(nextTheme);
 };
 
@@ -26,6 +30,8 @@ const toggleTheme = () => {
      <IconRegistry icons={[EvaIconsPack, FontAwesome5IconsPack,FontAwesomeIconsPack,IoniconsIconsPack]} />
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <ApplicationProvider {...eva} theme={{...eva[theme],...themeGlobal}} >
+      <StatusBar barStyle={theme === 'dark'?'light-content':'dark-content'} />
+
         <Appnavigator/>
       </ApplicationProvider>
     </ThemeContext.Provider>

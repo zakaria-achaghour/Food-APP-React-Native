@@ -5,8 +5,8 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import CategoriesScreen from "../screens/category/CategoriesScreen";
 import CategoryMealsScreen from "../screens/category/CategoryMealsScreen";
-import CreateCategoryScreen from "../screens/Admin/CreateCategoryScreen";
-import CreateMealScreen from "../screens/Admin/CreateMealScreen";
+import CreateCategoryScreen from "../screens/category/CreateCategoryScreen";
+import CreateMealScreen from "../screens/meal/CreateMealScreen";
 import MealScreen from "../screens/meal/MealScreen";
 import MealsScreen from "../screens/meal/MealsScreen";
 import { DrawerContent } from "./DrawerContent";
